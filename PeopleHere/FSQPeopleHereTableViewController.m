@@ -62,6 +62,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     VisitorObject *visitor = [self.venue.visitors objectAtIndex:indexPath.row];
+    if ([visitor.name isEqualToString:@"No Visitors"]) {
+        cell.textLabel.textColor = [UIColor lightGrayColor];
+    }
+    else{
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
     cell.textLabel.text = [NSString stringWithFormat:@"%@: %@",visitor.name, visitor.timeStr];    
     return cell;
 }

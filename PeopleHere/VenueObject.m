@@ -63,7 +63,9 @@
         NSArray *sortedArray = [visitorArr sortedArrayUsingDescriptors:@[sortDescriptor]];
         //Runs in O(M)
         for (VisitorObject *visitor in sortedArray) {
-            startTime = visitor.leaveTime;
+            if (visitor.leaveTime > startTime) {
+                startTime = visitor.leaveTime;
+            }
             [containerVisitorArr addObject:visitor];
             //last object check for final no visitors
             if ([key isEqualToString:[sortedKeys lastObject]]) {
