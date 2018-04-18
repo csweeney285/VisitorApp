@@ -27,14 +27,18 @@
 }
 
 - (NSString *)floatToString: (float) timeFloat{
-    //no idea why I need to add 1800 but it makes the times match the screenshot
-    NSNumber *time = [NSNumber numberWithFloat:(timeFloat + 18000)];
-    NSTimeInterval interval = [time doubleValue];
-    NSDate *online = [NSDate date];
-    online = [NSDate dateWithTimeIntervalSince1970:interval];
+    //get an NSDate starting at midnight
+    NSDate *const date = NSDate.date;
+    NSCalendar *const calendar = NSCalendar.currentCalendar;
+    NSCalendarUnit const preservedComponents = (NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay);
+    NSDateComponents *const components = [calendar components:preservedComponents fromDate:date];
+    NSDate *const normalizedDate = [calendar dateFromComponents:components];
+    //add the seconds since midnight
+    NSDate *newDate = [normalizedDate dateByAddingTimeInterval:timeFloat];
+    //format into a readable time
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"H:mm"];
-    return [dateFormatter stringFromDate:online];
+    return [dateFormatter stringFromDate:newDate];
 }
 
 @end
