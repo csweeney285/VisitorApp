@@ -33,7 +33,7 @@
     NSDate *online = [NSDate date];
     online = [NSDate dateWithTimeIntervalSince1970:interval];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH:mm"];
+    [dateFormatter setDateFormat:@"H:mm"];
     return [dateFormatter stringFromDate:online];
 }
 

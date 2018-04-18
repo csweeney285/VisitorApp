@@ -22,7 +22,9 @@
     return self;
 }
 
+//Method Big O is N + NLogN + (N * (MLogM + M)) with N representing parent nodes and M representing their children
 -(NSMutableArray *)parseVisitors:(NSArray *)visitorArr{
+    
     NSMutableDictionary *containerDict = [NSMutableDictionary new];
     //This loop will run in O(N)
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"leaveTime" ascending:YES];
@@ -39,6 +41,7 @@
         [arriveArr addObject:visitor];
         [containerDict setObject:arriveArr forKey:key];
     }
+    
     //Sorting will run in O(NLogN)
     NSArray *sortedKeys = [containerDict.allKeys sortedArrayUsingSelector:@selector(compare:)];
     //Container Array outside loop to add visitors
@@ -58,6 +61,7 @@
             [noVisitor formatTimeStr];
             [containerVisitorArr addObject: noVisitor];
         }
+        
         NSArray *visitorArr = [containerDict objectForKey:key];
         //This will run in O(MLogM) with M representing child nodes of N
         NSArray *sortedArray = [visitorArr sortedArrayUsingDescriptors:@[sortDescriptor]];

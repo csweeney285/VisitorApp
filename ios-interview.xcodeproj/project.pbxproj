@@ -80,10 +80,10 @@
 			children = (
 				21CA71911C9AF42300783F31 /* FSQPeopleHereTableViewController.h */,
 				21CA71921C9AF42300783F31 /* FSQPeopleHereTableViewController.m */,
-				D9BDDB622087868300771BE8 /* VisitorObject.h */,
-				D9BDDB632087868300771BE8 /* VisitorObject.m */,
 				D9BDDB652087869D00771BE8 /* VenueObject.h */,
 				D9BDDB662087869D00771BE8 /* VenueObject.m */,
+				D9BDDB622087868300771BE8 /* VisitorObject.h */,
+				D9BDDB632087868300771BE8 /* VisitorObject.m */,
 			);
 			path = PeopleHere;
 			sourceTree = SOURCE_ROOT;
