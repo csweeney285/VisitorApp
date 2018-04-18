@@ -23,8 +23,13 @@
 }
 
 //Method Big O is N + NLogN + (N * (MLogM + M)) with N representing parent nodes and M representing their children
+//This algorithm will order the visitors first by arrival time in ascending order
+//If visitors arrive at the same time they will then be ordered by leaving time
+//This algorithm also calculates time where there are no visitors
+//Iterating over the visitor nodes multiple times is not ideal but necessary in order to properly sort and store the data
 -(NSMutableArray *)parseVisitors:(NSArray *)visitorArr{
     
+    //This container dictionary will be used to store visitors based on arrival time
     NSMutableDictionary *containerDict = [NSMutableDictionary new];
     //This loop will run in O(N)
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"leaveTime" ascending:YES];
@@ -42,6 +47,8 @@
         [containerDict setObject:arriveArr forKey:key];
     }
     
+    //I am now sorting the objects in the dictionary
+    //This is less expensive than doing my own insertion sort when building the dictionary
     //Sorting will run in O(NLogN)
     NSArray *sortedKeys = [containerDict.allKeys sortedArrayUsingSelector:@selector(compare:)];
     //Container Array outside loop to add visitors
@@ -49,11 +56,14 @@
     //Loop through sorted keys again to format Array
     //Both loops are ordered
     //This will be used to calculate no visitor times
+    //It is important to realize that this can never run in quadratic time since each node will only be visited exactly once in the tree even though there is a nested loop
+    //this start time will be used to check if there is a no visitor time block
     float startTime = self.openTime;
     for (NSString *key in sortedKeys) {
         float keyTime = [key floatValue];
+        //no visitor check
         if (keyTime > startTime) {
-            //add a no visitor block
+            //add a no visitor object
             VisitorObject *noVisitor = [[VisitorObject alloc] init];
             noVisitor.name = @"No Visitors";
             noVisitor.arriveTime = startTime;
