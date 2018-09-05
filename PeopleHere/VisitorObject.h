@@ -10,6 +10,8 @@
 
 @interface VisitorObject : NSObject
 
+@property (nonatomic) BOOL visitor;
+
 -(id)initWithDictionary:(NSDictionary *)dict;
 
 @property (nonatomic) float arriveTime;

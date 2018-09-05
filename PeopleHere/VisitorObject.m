@@ -17,6 +17,7 @@
         self.leaveTime = [dict objectForKey:@"leaveTime"] ? [[dict objectForKey:@"leaveTime"] floatValue] : 0.0;
         self.name = [dict objectForKey:@"name"] ? [NSString stringWithFormat:@"%@", [dict objectForKey:@"name"] ] : @"";
         self.uniqueId = [dict objectForKey:@"id"] ? [NSString stringWithFormat:@"%@", [dict objectForKey:@"id"] ] : @"";
+        self.visitor = YES;
         [self formatTimeStr];
     }
     return self;
